@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ news.title }} - Новостной портал{% endblock %}
+
+{% block content %}
+<article class="detail-card">
+    <div class="mb-3">
+        <a class="btn btn-outline-secondary btn-sm" href="{% url 'home' %}">Назад</a>
+    </div>
+    <p class="text-uppercase text-muted mb-2">{{ news.date_display }}</p>
+    <h1 class="mb-3">{{ news.title }}</h1>
+    <p class="lead">{{ news.summary }}</p>
+    <hr class="my-4">
+    <div class="news-content">
+        {{ news.content|linebreaks }}
+    </div>
+</article>
+{% endblock %}

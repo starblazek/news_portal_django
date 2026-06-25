@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Ошибка сервера{% endblock %}
+
+{% block content %}
+<div class="empty-state">
+    <h1 class="h3">500</h1>
+    <p class="mb-4">На сервере произошла ошибка. Попробуйте обновить страницу чуть позже.</p>
+    <a class="btn btn-primary" href="{% url 'home' %}">Вернуться на главную</a>
+</div>
+{% endblock %}

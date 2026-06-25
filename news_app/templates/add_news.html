@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить новость - Новостной портал{% endblock %}
+
+{% block content %}
+<div class="form-shell">
+    <div class="mb-4">
+        <p class="text-uppercase text-muted mb-2">Режим добавления</p>
+        <h1 class="h3 mb-0">Добавить новость</h1>
+    </div>
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            Проверьте поля формы и попробуйте еще раз.
+        </div>
+    {% endif %}
+
+    <form method="post" class="row g-3">
+        {% csrf_token %}
+        <div class="col-12">
+            <label class="form-label" for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+            {{ form.title }}
+            {{ form.title.errors }}
+        </div>
+        <div class="col-12">
+            <label class="form-label" for="{{ form.summary.id_for_label }}">{{ form.summary.label }}</label>
+            {{ form.summary }}
+            {{ form.summary.errors }}
+        </div>
+        <div class="col-12">
+            <label class="form-label" for="{{ form.content.id_for_label }}">{{ form.content.label }}</label>
+            {{ form.content }}
+            {{ form.content.errors }}
+        </div>
+        <div class="col-12 col-md-6">
+            <label class="form-label" for="{{ form.date.id_for_label }}">{{ form.date.label }}</label>
+            {{ form.date }}
+            <div class="form-text">Если дату не выбрать, будет использована сегодняшняя.</div>
+            {{ form.date.errors }}
+        </div>
+        <div class="col-12 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a class="btn btn-outline-secondary" href="{% url 'home' %}">Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

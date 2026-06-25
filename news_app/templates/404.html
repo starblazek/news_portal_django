@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Страница не найдена{% endblock %}
+
+{% block content %}
+<div class="empty-state">
+    <h1 class="h3">404</h1>
+    <p class="mb-4">Такой страницы нет. Возможно, ссылка устарела или была введена с ошибкой.</p>
+    <a class="btn btn-primary" href="{% url 'home' %}">Вернуться на главную</a>
+</div>
+{% endblock %}
