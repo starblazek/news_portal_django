@@ -7,9 +7,21 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+def split_env_list(name, default=""):
+    return [item.strip() for item in os.environ.get(name, default).split(",") if item.strip()]
+
+
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dev-key-change-in-production')
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = split_env_list(
+    'ALLOWED_HOSTS',
+    'localhost,127.0.0.1,.up.railway.app,.railway.app',
+)
+CSRF_TRUSTED_ORIGINS = split_env_list(
+    'CSRF_TRUSTED_ORIGINS',
+    'https://*.up.railway.app,https://*.railway.app',
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
