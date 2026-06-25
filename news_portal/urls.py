@@ -4,6 +4,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('api/', include('news_app.api_urls')),
     path('api/token/', obtain_auth_token, name='api_token'),
     path('', include('news_app.urls')),

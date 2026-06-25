@@ -63,6 +63,17 @@ body {
     color: var(--portal-accent);
 }
 
+.auth-nav-button {
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    padding: 0.5rem 0;
+}
+
+.auth-nav-button:hover {
+    color: #ffffff;
+}
+
 .empty-state,
 .success-shell {
     max-width: 760px;

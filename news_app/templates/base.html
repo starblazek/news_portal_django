@@ -25,6 +25,21 @@
                     <li class="nav-item">
                         <a class="nav-link btn btn-light btn-sm ms-lg-3 px-3" href="{% url 'add_news' %}">Добавить новость</a>
                     </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item d-flex align-items-center ms-lg-3">
+                            <span class="navbar-text text-white-50">Вы: {{ user.username }}</span>
+                        </li>
+                        <li class="nav-item ms-lg-2">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button class="nav-link auth-nav-button" type="submit">Выйти</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link ms-lg-3" href="{% url 'login' %}">Войти</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
