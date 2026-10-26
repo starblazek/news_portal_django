@@ -7,7 +7,7 @@
     <div>
         <p class="text-uppercase text-muted mb-2">Учебный Django-проект</p>
         <h1 class="display-6 fw-bold mb-3">Свежие новости в простом мини-портале</h1>
-        <p class="lead mb-0">Список новостей хранится в JSON, а добавление работает через обычную форму Django.</p>
+        <p class="lead mb-0">Новости хранятся в базе данных и доступны через веб-сайт и REST API.</p>
     </div>
     <a class="btn btn-primary btn-lg" href="{% url 'add_news' %}">Добавить новость</a>
 </div>
@@ -16,7 +16,7 @@
     <div class="row g-4">
         {% for news in news_list %}
             <div class="col-12">
-                <article class="card news-card {% if news.is_today %}news-card-today{% endif %}">
+                <article class="card news-card {% if news.date_created.date == today %}news-card-today{% endif %}">
                     <div class="card-body">
                         <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
                             <div>
@@ -24,10 +24,11 @@
                                     <a class="news-link" href="{% url 'news_detail' news.id %}">{{ news.title }}</a>
                                 </h2>
                                 <p class="text-body-secondary mb-3">{{ news.summary }}</p>
+                                <p class="text-muted small mb-0">Автор: {{ news.author.username }}</p>
                             </div>
                             <div class="text-end">
-                                <div class="badge text-bg-secondary mb-2">{{ news.date_display }}</div>
-                                {% if news.is_today %}
+                                <div class="badge text-bg-secondary mb-2">{{ news.date_created|date:"d.m.Y" }}</div>
+                                {% if news.date_created.date == today %}
                                     <div class="badge text-bg-warning">Сегодня</div>
                                 {% endif %}
                             </div>
@@ -40,7 +41,7 @@
 {% else %}
     <div class="empty-state">
         <h2 class="h4">Новостей пока нет</h2>
-        <p class="mb-4">Добавьте первую новость, чтобы проверить сохранение в JSON и переход на страницу детали.</p>
+        <p class="mb-4">Добавьте первую новость, чтобы проверить сохранение в базе данных и переход на страницу детали.</p>
         <a class="btn btn-primary" href="{% url 'add_news' %}">Создать новость</a>
     </div>
 {% endif %}

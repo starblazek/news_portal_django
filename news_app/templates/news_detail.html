@@ -7,9 +7,10 @@
     <div class="mb-3">
         <a class="btn btn-outline-secondary btn-sm" href="{% url 'home' %}">Назад</a>
     </div>
-    <p class="text-uppercase text-muted mb-2">{{ news.date_display }}</p>
+    <p class="text-uppercase text-muted mb-2">{{ news.date_created|date:"d.m.Y" }}</p>
     <h1 class="mb-3">{{ news.title }}</h1>
     <p class="lead">{{ news.summary }}</p>
+    <p class="text-muted">Автор: {{ news.author.username }}</p>
     <hr class="my-4">
     <div class="news-content">
         {{ news.content|linebreaks }}
